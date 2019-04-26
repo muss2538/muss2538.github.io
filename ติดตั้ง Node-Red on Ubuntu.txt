@@ -1,0 +1,45 @@
+********************************************************
+os : Ubuntu 18
+ต้องทำการติดตั้ง Nodejs ก่อน
+
+********************************************************
+~$ sudo apt-get install curl python-software-properties
+~$ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+****Version setup_10.x****
+~$ sudo apt-get update
+~$ sudo apt-get install nodejs
+****ทดสอบ NodeJS****
+~$ node -v
+~$ npm -v
+
+********************************************************
+~$ sudo npm install -g --unsafe-perm node-red node-red-admin
+~$ sudo ufw allow 1880
+****ทดสอบ Node-Red****
+http://localhost:1880/
+
+
+********************************************************
+****Run Node-RED automatically****
+~$ sudo nano /etc/systemd/system/node-red.service
+[Unit]
+Description=Node-RED
+After=syslog.target network.target
+
+[Service]
+ExecStart=/usr/local/bin/node-red-pi --max-old-space-size=128 -v
+Restart=on-failure
+KillSignal=SIGINT
+
+# log output to syslog as 'node-red'
+SyslogIdentifier=node-red
+StandardOutput=syslog
+
+# non-root user to run as
+WorkingDirectory=/home/UTILISATEUR/
+User=UTILISATEUR
+Group=UTILISATEUR
+
+[Install]
+WantedBy=multi-user.target
+~$ sudo systemctl enable node-red

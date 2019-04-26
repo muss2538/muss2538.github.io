@@ -1,12 +1,12 @@
 
-sudo apt update
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+~$ sudo apt-get update
+~$ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
 
-sudo gedit /etc/apt/sources.list.d/docker.list
-copy this line:
-deb [arch=amd64] https://download.docker.com/linux/ubuntu artful stable
+~$ sudo nano /etc/apt/sources.list.d/docker.list
+      copy this line:
+      deb [arch=amd64] https://download.docker.com/linux/ubuntu artful stable
 
-curl -fsSL https://download.docker.com/linux/ubu... | sudo apt-key add -
+~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-sudo apt update
-sudo apt install docker-ce
+~$ sudo apt update
+~$ sudo apt install docker-ce
